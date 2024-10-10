@@ -1,0 +1,54 @@
+.Register{
+    background-color: antiquewhite;
+}
+.form-group label
+{   
+
+    margin-bottom: 20px;
+    font-size: medium;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100px;
+}
+.form-container{
+    outline: solid black;
+    min-width: 30rem;
+    
+}
+
+.main-container h3{
+   font-size:xx-large;
+   margin-bottom: 20px;
+}
+.form-group input{
+    min-height: 2rem;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+.submit-container-register button{
+
+    border-radius: 10px;
+    background-color:rgb(168, 156, 142);
+    min-width: 200px;
+    min-height: 50px;
+}
+.submit-container :hover {
+    background-color: rgb(212, 197, 179);
+}
+.form-group1{
+    display: flex;
+    flex-direction: row;
+  
+}.form-group1 label{
+    margin-left: 10px;
+}
+.form-group2{
+    display: flex;
+    flex-direction: row;
+}
+
+.form-group2 label {
+    margin-left: 10px;
+}
+
+   
