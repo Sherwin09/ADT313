@@ -54,7 +54,7 @@ function Login() {
       .then((res) => {
         console.log(res);
         localStorage.setItem("accessToken", res.data.access_token);
-        navigate("/main/movies");
+        navigate("/main/dashboard");
         setStatus("idle");
       })
       .catch((e) => {
@@ -72,7 +72,7 @@ function Login() {
     <div className="Login">
       <div className="main-container">
         <h3>
-          <b>Login</b>
+          Login<b></b>
         </h3>
         <form>
           <div className="form-container">
