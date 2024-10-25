@@ -1,0 +1,82 @@
+.Register{
+    background-color: rgb(255, 255, 255);
+}
+.register-form-group label
+{   
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    width: 100px;
+    margin-right: 8px;
+    
+}
+.register-form-container h2{
+    font-weight: bolder;
+    text-align: center;
+}
+.register-form-container{
+outline: none;
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 30vw;
+height: 70vh;
+border-radius: 12px;
+box-shadow: 10px 10px 5px 12px lightblue;
+}
+.register-main-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+    height: 100%;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-form-group input{
+    padding-left: 10px;
+    height: 30px;
+    width: 200px;
+    border-radius: 10px;
+}
+.register-submit-container button{
+    padding: 12px 48px;
+    border-radius: 50px;
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    outline: none;
+    border-width: 0;
+    background-color: rgb(143, 92, 92);
+    font-weight: 600;
+    width: 250px;
+}
+.register-submit-container :hover {
+    background-color: rgb(212, 197, 179);
+}
+.register-form-group{
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+  
+}.register-form-indiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    flex-direction: row;
+    margin-top: 1.5rem;
+}
+.register-errors {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+
+}
+
+
+
+   
