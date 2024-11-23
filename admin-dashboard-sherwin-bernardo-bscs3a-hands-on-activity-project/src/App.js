@@ -8,11 +8,16 @@ import Main from './pages/Main/Main';
 import Movie from './pages/Main/Movie/Movie';
 import Lists from './pages/Main/Movie/Lists/Lists';
 import Form from './pages/Main/Movie/Form/Form';
+import Register from './pages/Public/Register/Register';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Login />,
+  },
+    {
+    path: '/register', 
+    element: <Register />,
   },
   {
     path: '/main',

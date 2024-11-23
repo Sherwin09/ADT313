@@ -1,17 +1,134 @@
+
 .lists-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.create-container {
-  align-self: flex-end;
-  margin: 1rem 0;
-}
-.table-container,
-.movie-lists {
-  width: 100%;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  background-color: #ffffff;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  border-radius: 8px;
+  overflow: hidden;
+
 }
 
-.table-container {
-  text-align: center;
+.list-create-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
+  background-color: #b9ffe8;
+  border-bottom: 1px solid #ccc;
+
+}
+
+
+.list-btn {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #00ffaa;
+
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.list-btn:hover {
+  background-color: #1c5f48;
+
+}
+
+
+.list-table-container {
+  padding: 20px;
+}
+
+
+.list-movie-lists {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.list-movie-lists th,
+.list-movie-lists td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+
+}
+
+.list-movie-lists th {
+  background-color: #319b78;
+  color: #333;
+  font-weight: bold;
+}
+
+.list-movie-lists tr:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+
+.list-movie-lists td button {
+  padding: 8px 12px;
+  margin-right: 5px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.list-movie-lists td button:first-child {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.list-movie-lists td button:first-child:hover {
+  background-color: #45a049;
+
+}
+
+.list-movie-lists td button:last-child {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.list-movie-lists td button:last-child:hover {
+  background-color: #e53935;
+
+}
+
+
+.list-table-container {
+  max-height: 500px;
+  overflow-y: auto;
+
+}
+
+
+@media (max-width: 768px) {
+  .list-movie-lists th,
+  .list-movie-lists td {
+    padding: 10px;
+
+  }
+
+  .list-btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+
+  }
+
+  .list-table-container {
+    padding: 10px;
+  }
+
+  .list-movie-lists {
+    font-size: 14px;
+
+  }
 }

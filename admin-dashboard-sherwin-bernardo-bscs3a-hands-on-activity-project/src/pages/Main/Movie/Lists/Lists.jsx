@@ -1,15 +1,15 @@
-import { useNavigate } from 'react-router-dom';
-import './Lists.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import "./Lists.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const Lists = () => {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
   const [lists, setLists] = useState([]);
 
   const getMovies = () => {
     //get the movies from the api or database
-    axios.get('/movies').then((response) => {
+    axios.get("/movies").then((response) => {
       setLists(response.data);
     });
   };
@@ -19,7 +19,7 @@ const Lists = () => {
 
   const handleDelete = (id) => {
     const isConfirm = window.confirm(
-      'Are you sure that you want to delete this data?'
+      "Are you sure that you want to delete this data?"
     );
     if (isConfirm) {
       axios
@@ -44,19 +44,20 @@ const Lists = () => {
   };
 
   return (
-    <div className='lists-container'>
-      <div className='create-container'>
+    <div className="lists-container">
+      <div className="list-create-container">
         <button
-          type='button'
+          className="list-btn"
+          type="button"
           onClick={() => {
-            navigate('/main/movies/form');
+            navigate("/main/movies/form");
           }}
         >
-          Create new
+          <b>Create new</b>
         </button>
       </div>
-      <div className='table-container'>
-        <table className='movie-lists'>
+      <div className="list-table-container">
+        <table className="list-movie-lists">
           <thead>
             <tr>
               <th>ID</th>
@@ -71,14 +72,18 @@ const Lists = () => {
                 <td>{movie.title}</td>
                 <td>
                   <button
-                    type='button'
+                    type="button"
                     onClick={() => {
-                      navigate('/main/movies/form/' + movie.id);
+                      navigate("/main/movies/form/" + movie.id);
                     }}
                   >
                     Edit
                   </button>
-                  <button type='button' onClick={() => handleDelete(movie.id)}>
+                  <button
+                    className="list-btn"
+                    type="button"
+                    onClick={() => handleDelete(movie.id)}
+                  >
                     Delete
                   </button>
                 </td>
