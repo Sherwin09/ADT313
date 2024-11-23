@@ -1,58 +1,46 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "./Form.css";
-
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import './Form.css';
 const Form = () => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [searchedMovieList, setSearchedMovieList] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(undefined);
   const [movie, setMovie] = useState(undefined);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
-  let { movieId } = useParams();
   const navigate = useNavigate();
+  let { movieId } = useParams();
 
-  const url = movieId ? `/movies/${movieId}` : "/movies";
-  const method = movieId ? "patch" : "post";
+ 
 
-  useEffect(() => {
-    if (query !== "") {
-      axios({
-        method: "get",
-        url: `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`,
-        headers: {
-          Accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YTdiNmUyNGJkNWRkNjhiNmE1ZWFjZjgyNWY3NGY5ZCIsIm5iZiI6MTcyOTI5NzI5Ny4wNzMzNTEsInN1YiI6IjY2MzhlZGM0MmZhZjRkMDEzMGM2NzM3NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZIX4EF2yAKl6NwhcmhZucxSQi1rJDZiGG80tDd6_9XI",
-        },
-      })
-        .then((response) => {
-          setSearchedMovieList(response.data.results);
-
-          setTotalPages(Math.min(response.data.total_pages, 20));
-        })
-        .catch((error) => {
-          console.log(error);
-          alert(error);
-        });
-    }
-  }, [query, page]);
+  const handleSearch = useCallback(() => {
+    axios({
+      method: 'get',
+      url: `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+      headers: {
+        Accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YTdiNmUyNGJkNWRkNjhiNmE1ZWFjZjgyNWY3NGY5ZCIsIm5iZiI6MTcyOTI5NzI5Ny4wNzMzNTEsInN1YiI6IjY2MzhlZGM0MmZhZjRkMDEzMGM2NzM3NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZIX4EF2yAKl6NwhcmhZucxSQi1rJDZiGG80tDd6_9XI',
+      },
+    }).then((response) => {
+      setSearchedMovieList(response.data.results);
+      console.log(response.data.results);
+    });
+  }, [query]);
 
   const handleSelectMovie = (movie) => {
     setSelectedMovie(movie);
   };
 
   const handleSave = () => {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem('accessToken');
     console.log(accessToken);
     if (selectedMovie === undefined) {
-      alert("Please search and select a movie.");
+      //add validation
+      alert('Please search and select a movie.');
     } else {
       const data = {
         tmdbId: selectedMovie.id,
-        title: selectedMovie.original_title,
+        title: selectedMovie.title,
         overview: selectedMovie.overview,
         popularity: selectedMovie.popularity,
         releaseDate: selectedMovie.release_date,
@@ -62,9 +50,12 @@ const Form = () => {
         isFeatured: 0,
       };
 
+      const url = movieId ? `/movies/${movieId}` : '/movies';
+      const method = movieId ? 'patch' : 'post' ;
+
       const request = axios({
-        method: movieId ? "patch" : "post",
-        url: movieId ? `/movies/${movieId}` : `/movies`,
+        method: 'post',
+        url: '/movies',
         data: data,
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -72,16 +63,17 @@ const Form = () => {
       })
         .then((saveResponse) => {
           console.log(saveResponse);
-          alert("Success");
-          navigate("/main/movies");
+          navigate('/main/movies');
+          alert('Success');
         })
         .catch((error) => {
-          console.log(error);
-          alert(error);
-        });
+          console.log(error)
+        alert(error)});
     }
   };
 
+  //create a form change/validation
+  //create a new handler for update
   useEffect(() => {
     if (movieId) {
       axios.get(`/movies/${movieId}`).then((response) => {
@@ -99,136 +91,136 @@ const Form = () => {
         console.log(response.data);
       });
     }
-  }, [movieId]);
-
-  const handleNextPage = () => {
-    if (page < totalPages) setPage(page + 1);
-  };
-
-  const handlePreviousPage = () => {
-    if (page > 1) setPage(page - 1);
-  };
+  }, []);
 
   return (
     <>
-      <h1>{movieId !== undefined ? "Edit " : "Create "} Movie</h1>
+      <h1>{movieId !== undefined ? 'Edit ' : 'Create '} Movie</h1>
 
       {movieId === undefined && (
         <>
-          <div className="search-container">
-            Search Movie:{" "}
+          <div className='search-container'>
+            Search Movie:{' '}
             <input
-              type="text"
+              type='text'
               onChange={(event) => setQuery(event.target.value)}
             />
-            <button type="button" onClick={() => setPage(1)}>
+            <button type='button' onClick={handleSearch}>
               Search
             </button>
-            <div className="searched-movie">
+            <div className='searched-movie'>
               {searchedMovieList.map((movie) => (
-                <p key={movie.id} onClick={() => handleSelectMovie(movie)}>
+                <p onClick={() => handleSelectMovie(movie)}>
                   {movie.original_title}
                 </p>
               ))}
-            </div>
-            <div className="pagination">
-              <button disabled={page === 1} onClick={handlePreviousPage}>
-                Previous
-              </button>
-              <span>
-                Page {page} of {totalPages}
-              </span>
-              <button disabled={page === totalPages} onClick={handleNextPage}>
-                Next
-              </button>
-              <p>Total Result: {searchedMovieList.length}</p>
             </div>
           </div>
           <hr />
         </>
       )}
 
-      <div className="container">
+      <div className='container'>
         <form>
           {selectedMovie ? (
             <img
-              className="poster-image"
+              className='poster-image'
               src={`https://image.tmdb.org/t/p/original/${selectedMovie.poster_path}`}
             />
           ) : (
-            ""
+            ''
           )}
-          <div className="field">
+          <div className='field'>
             Title:
             <input
-              type="text"
-              value={selectedMovie ? selectedMovie.original_title : ""}
+              type='text'
+              value={selectedMovie ? selectedMovie.original_title : ''}
               onChange={(e) =>
-                setSelectedMovie({
-                  ...selectedMovie,
-                  original_title: e.target.value,
-                })
+                setSelectedMovie({...selectedMovie, original_title: e.target.value})
               }
             />
           </div>
-          <div className="field">
+          <div className='field'>
             Overview:
             <textarea
               rows={10}
-              value={selectedMovie ? selectedMovie.overview : ""}
+              value={selectedMovie ? selectedMovie.overview : ''}
               onChange={(e) =>
-                setSelectedMovie({ ...selectedMovie, overview: e.target.value })
+                setSelectedMovie({...selectedMovie, overview: e.target.value})
               }
             />
           </div>
 
-          <div className="field">
+          <div className='field'>
             Popularity:
             <input
-              type="text"
-              value={selectedMovie ? selectedMovie.popularity : ""}
+              type='text'
+              value={selectedMovie ? selectedMovie.popularity : ''}
               onChange={(e) =>
-                setSelectedMovie({
-                  ...selectedMovie,
-                  popularity: e.target.value,
-                })
+                setSelectedMovie({...selectedMovie, popularity: e.target.value})
               }
             />
           </div>
 
-          <div className="field">
+          <div className='field'>
             Release Date:
             <input
-              type="text"
-              value={selectedMovie ? selectedMovie.release_date : ""}
+              type='text'
+              value={selectedMovie ? selectedMovie.release_date : ''}
               onChange={(e) =>
-                setSelectedMovie({
-                  ...selectedMovie,
-                  release_date: e.target.value,
-                })
+                setSelectedMovie({...selectedMovie, release_date: e.target.value})
               }
             />
           </div>
 
-          <div className="field">
+          <div className='field'>
             Vote Average:
             <input
-              type="text"
-              value={selectedMovie ? selectedMovie.vote_average : ""}
+              type='text'
+              value={selectedMovie ? selectedMovie.vote_average : ''}
               onChange={(e) =>
-                setSelectedMovie({
-                  ...selectedMovie,
-                  vote_average: e.target.value,
-                })
+                setSelectedMovie({...selectedMovie, vote_average: e.target.value})
               }
             />
           </div>
 
-          <button type="button" onClick={handleSave}>
+          <button type='button' onClick={handleSave}>
             Save
           </button>
         </form>
       </div>
+      {movieId !== undefined && selectedMovie && (
+        <div>
+          <hr />
+          <nav>
+            <ul className='tabs'>
+              <li
+                onClick={() => {
+                  navigate(`/main/movies/form/${movieId}/cast-and-crews`);
+                }}
+              >
+                Cast & Crews
+              </li>
+              <li
+                onClick={() => {
+                  navigate(`/main/movies/form/${movieId}/videos`);
+                }}
+              >
+                Videos
+              </li>
+              <li
+                onClick={() => {
+                  navigate(`/main/movies/form/${movieId}/photos`);
+                }}
+              >
+                Photos
+              </li>
+            </ul>
+          </nav>
+
+          <Outlet />
+        </div>
+      )}
     </>
   );
 };

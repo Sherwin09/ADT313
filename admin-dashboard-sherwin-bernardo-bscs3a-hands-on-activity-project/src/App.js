@@ -3,15 +3,11 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import Login from './pages/Public/Login/Login';
-import Register from './pages/Public/Register/Register'; // Import the Register component
 import Dashboard from './pages/Main/Dashboard/Dashboard';
 import Main from './pages/Main/Main';
-import "./App.css";
 import Movie from './pages/Main/Movie/Movie';
 import Lists from './pages/Main/Movie/Lists/Lists';
 import Form from './pages/Main/Movie/Form/Form';
-
-
 
 const router = createBrowserRouter([
   {
@@ -19,14 +15,10 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/register', 
-    element: <Register />,
-  },
-  {
     path: '/main',
     element: <Main />,
     children: [
-   //Temporarily disabled the dashboard route
+      //Temporarily disabled the dashboard route
       // {
       //   path: '/main/dashboard',
       //   element: <Dashboard />,
@@ -42,6 +34,34 @@ const router = createBrowserRouter([
           {
             path: '/main/movies/form/:movieId?',
             element: <Form />,
+            children: [
+              {
+                path: '/main/movies/form/:movieId',
+                element: (
+                  <h1>Change this for cast & crew CRUD functionality.</h1>
+                ),
+              },
+              {
+                path: '/main/movies/form/:movieId/cast-and-crews',
+                element: (
+                  <h1>
+                    Change this for cast & crew CRUD functionality component.
+                  </h1>
+                ),
+              },
+              {
+                path: '/main/movies/form/:movieId/photos',
+                element: (
+                  <h1>Change this for photos CRUD functionality component.</h1>
+                ),
+              },
+              {
+                path: '/main/movies/form/:movieId/videos',
+                element: (
+                  <h1>Change this for videos CRUD functionality component.</h1>
+                ),
+              },
+            ],
           },
         ],
       },
@@ -58,9 +78,3 @@ function App() {
 }
 
 export default App;
-/*
-1 using react hooks, get the latest value of form fields and pass it as payload to api 
-2 create the update function of movie
-3 implement pagination in search movie using the "total_pages" from tmdb api response
-4 add error handler for search , save ,delete
-5 redirect to'/main/movies' after saving the movie*/
