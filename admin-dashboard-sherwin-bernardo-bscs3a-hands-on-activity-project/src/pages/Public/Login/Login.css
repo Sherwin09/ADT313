@@ -8,23 +8,23 @@
 
 body {
   height: 100vh;
-  background-color: #0e8389;
+  background: -webkit-linear-gradient(#005f3f, #000000);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .main-container-login {
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #0e8389;
+  
 }
 
 .form-container-login {
-  background-color: #7fffd4;
-
+  background: -webkit-linear-gradient(#7fffd4, #069a69);
   outline: none;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@ body {
   font-size: 1rem;
   border: none;
   border-radius: 8px;
-  background-color: #319b78;
+  background-color: #1e6c52;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -140,7 +140,7 @@ body {
 }
 
 .register-container a {
-  color: #319b78;
+  color: #00160f;
   text-decoration: none;
   font-weight: bold;
   margin-left: 5px;
@@ -155,7 +155,7 @@ body {
 .show-password-login {
   margin-bottom: 1rem;
   cursor: pointer;
-  color: #319b78;
+  color: #003c29;
   font-weight: bold;
   text-align: center;
   font-size: 0.9rem;

@@ -5,6 +5,18 @@ h1 {
   color: #000000;
   margin: 20px 0;
 }
+.div-title-page{
+  border-radius: 5px;
+  padding: 1px;
+  width:100%;
+  background-color: transparent;
+
+}
+
+.title-page{
+  font-size:2.5rem;
+  color: #00c388;
+}
 
 .form-search-container {
   width: 90%;
@@ -26,11 +38,11 @@ h1 {
 .form-search-container-btn input {
   flex: 1;
   width: 50rem;
-  height: 2rem;
+  height: 3rem;
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #7fffd4;
-  border-radius: 5px;
+  border-radius: 10px;
   outline: none;
   background-color: #ffffff;
   color: #000000;
@@ -94,13 +106,13 @@ h1 {
 
 .form-pagination button {
   padding: 10px 15px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #319b78;
-    color: #000000;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #319b78;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 .form-pagination button:hover{
   background-color: #003c28;
@@ -114,11 +126,11 @@ h1 {
 
 .form-pagination span {
   font-size: 1.2rem;
-  color: #000000;
+  color: #ffffff;
 }
 
 
-.form-container {
+.form-container { 
   width: 100%;
   max-width: 800px;
   margin: 20px auto;
@@ -147,7 +159,7 @@ h1 {
 .form-field input,
 .form-field textarea {
   width: 100vh;
-align-self: center;
+  align-self: center;
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #00f8a5;

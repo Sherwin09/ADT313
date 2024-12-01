@@ -70,7 +70,8 @@ function Register() {
       const res = await axios.post("/admin/register", data);
       console.log(res);
       localStorage.setItem("accessToken", res.data.access_token);
-      navigate("/main/dashboard");
+      // navigate("/main/dashboard");
+      navigate("/login");
     } catch (e) {
       console.log(e);
       setStatus("idle");
@@ -196,7 +197,7 @@ function Register() {
             </div>
             <div className="login-container">
               <small>Already have an account?</small>
-              <a href="/">
+              <a href="/login">
                 <small> Login</small>
               </a>
             </div>

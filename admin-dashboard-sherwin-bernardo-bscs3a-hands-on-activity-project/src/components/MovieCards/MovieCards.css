@@ -1,14 +1,31 @@
 .card {
-  max-width: 180px;
-  border: 20px solid #898989;
-  background-color: #898989;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 200px;
+  color:aliceblue;
+  border: 20px solid #002519;
+  background-color: #002519;
 }
 .card img {
-  max-width: 180px;
-  object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 150px;
+    object-fit: fill ;
 }
 
 .card:hover {
-  border: 20px solid #3f3f3f;
-  background-color: #3f3f3f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  border: 20px solid #298667;
+  background-color: #298667;
+}
+.title{
+  margin-top: 20px;
+  font-weight: bold;
 }

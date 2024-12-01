@@ -8,7 +8,7 @@
 }
 
 .Register-form-container {
-    background-color: #7fffd4;
+    background: -webkit-linear-gradient(#7fffd4, #069a69);
     outline: none;
     display: flex;
     flex-direction: column;
@@ -70,7 +70,7 @@
     font-size: 1rem;
     border: none;
     border-radius: 8px;
-    background-color: #319b78;
+    background-color: #1e6c52;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -95,7 +95,7 @@
 }
 
 .login-container a {
-    color: #319b78;
+    color: #063727;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./Form.css";
+import { Outlet } from "react-router-dom";
 
 const Form = () => {
   const [query, setQuery] = useState("");
@@ -111,13 +112,17 @@ const Form = () => {
 
   return (
     <>
-      <h1>{movieId !== undefined ? "Edit " : "Create "} Movie</h1>
-
+      <div className="div-title-page">
+        <h1 className="title-page">
+          {movieId !== undefined ? "Edit " : "Create "}{" "}Movies
+        </h1>
+      </div>
       {movieId === undefined && (
         <>
           <div className="form-search-container">
             <div className="form-search-container-btn">
               <input
+              className="input-search"
                 placeholder="Search movie"
                 type="text"
                 onChange={(event) => setQuery(event.target.value)}
@@ -235,6 +240,38 @@ const Form = () => {
           </button>
         </form>
       </div>
+      {movieId !== undefined && selectedMovie && (
+        <div>
+          <hr />
+          <nav>
+            <ul className="tabs">
+              <li
+                onClick={() => {
+                  navigate(`/main/movies/form/${movieId}/cast-and-crews`);
+                }}
+              >
+                Cast & Crews
+              </li>
+              <li
+                onClick={() => {
+                  navigate(`/main/movies/form/${movieId}/videos`);
+                }}
+              >
+                Videos
+              </li>
+              <li
+                onClick={() => {
+                  navigate(`/main/movies/form/${movieId}/photos`);
+                }}
+              >
+                Photos
+              </li>
+            </ul>
+          </nav>
+
+          <Outlet />
+        </div>
+      )}
     </>
   );
 };
