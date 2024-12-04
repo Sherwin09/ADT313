@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useDebounce } from "../../../utils/hooks/useDebounce";
 import Register from "../Register/Register";
 import axios from "axios";
@@ -147,6 +147,7 @@ function Login() {
           </div>
         </form>
       </div>
+      <Outlet />
     </div>
   );
 }

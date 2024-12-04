@@ -24,11 +24,12 @@ function Main() {
       <div className="container">
         <div className="navigation">
           <ul>
-            <a className="site-title">
-              Dream
-            </a>
+            <a className="site-title">Dream</a>
             <li>
-              <a href="/">Dashboard</a>
+              <a href="/">Movie</a>
+            </li>
+            <li>
+              <a href="/main/movies">Dashboard</a>
             </li>
             <li className="logout">
               <a onClick={handleLogout}>Logout</a>

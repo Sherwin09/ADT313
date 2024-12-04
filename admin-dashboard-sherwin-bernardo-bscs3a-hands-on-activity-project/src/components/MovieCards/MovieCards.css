@@ -4,6 +4,7 @@
   align-items: center;
   flex-direction: column;
   border-radius: 5px;
+  height: 350px;
   width: 200px;
   color:aliceblue;
   border: 20px solid #002519;
@@ -26,6 +27,7 @@
   background-color: #298667;
 }
 .title{
+  font-size: .8rem;
   margin-top: 20px;
   font-weight: bold;
 }

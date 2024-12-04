@@ -5,30 +5,32 @@ import "./Main.css";
 function MainClient() {
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
+    navigate("/");
   };
 
   useEffect(() => {
-    if (
-      accessToken === undefined ||
-      accessToken === "" ||
-      accessToken === null
-    ) {
+    if (!accessToken) {
       handleLogout();
     }
-  }, []);
+  }, [accessToken]);
+
   return (
     <div className="Main">
       <div className="container">
         <div className="navigation">
           <ul>
-              <a className="site-title" >
-                Dream
-              </a>
+            <a className="site-title">Dream</a>
             <li>
               <a onClick={() => navigate("/")}>Movies</a>
             </li>
+            {accessToken && (
+              <li>
+                <a onClick={() => navigate("/main/movies")}>Dashboard</a>
+              </li>
+            )}
             {accessToken ? (
               <li className="logout">
                 <a onClick={handleLogout}>Logout</a>

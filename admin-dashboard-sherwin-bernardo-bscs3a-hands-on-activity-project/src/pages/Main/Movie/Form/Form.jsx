@@ -12,6 +12,7 @@ const Form = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+
   let { movieId } = useParams();
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const Form = () => {
         headers: {
           Accept: "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YTdiNmUyNGJkNWRkNjhiNmE1ZWFjZjgyNWY3NGY5ZCIsIm5iZiI6MTcyOTI5NzI5Ny4wNzMzNTEsInN1YiI6IjY2MzhlZGM0MmZhZjRkMDEzMGM2NzM3NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZIX4EF2yAKl6NwhcmhZucxSQi1rJDZiGG80tDd6_9XI",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYzkwM2QxZmU2MmFlN2QyNjJiNmNjYTQ4M2Y5M2U3MiIsIm5iZiI6MTcyOTc1NzE5NC41NTcsInN1YiI6IjY3MWEwMDBhNWQwZGU4OTA0MmQ4ZGU5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FVVdB2MiqYiPT9zF-DgtzgujwBnAPijbptO9gF3ExSc",
         },
       })
         .then((response) => {
@@ -114,7 +115,7 @@ const Form = () => {
     <>
       <div className="div-title-page">
         <h1 className="title-page">
-          {movieId !== undefined ? "Edit " : "Create "}{" "}Movies
+          {movieId !== undefined ? "Edit " : "Create "} Movies
         </h1>
       </div>
       {movieId === undefined && (
@@ -122,35 +123,45 @@ const Form = () => {
           <div className="form-search-container">
             <div className="form-search-container-btn">
               <input
-              className="input-search"
+                className="input-search"
                 placeholder="Search movie"
                 type="text"
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => {
+                  setQuery(event.target.value);
+                  setPage(1); 
+                }}
               />
               <button type="button" onClick={() => setPage(1)}>
                 <b>Search</b>
               </button>
             </div>
-            <div className="form-searched-movie">
-              {searchedMovieList.map((movie) => (
-                <p key={movie.id} onClick={() => handleSelectMovie(movie)}>
-                  {movie.original_title}
-                </p>
-              ))}
-            </div>
-            <div className="form-pagination">
-              <button disabled={page === 1} onClick={handlePreviousPage}>
-                <b>Previous</b>
-              </button>
-              <span>
-                <b>
-                  Page {page} of {totalPages}
-                </b>
-              </span>
-              <button disabled={page === totalPages} onClick={handleNextPage}>
-                <b>Next</b>
-              </button>
-            </div>
+            {searchedMovieList.length > 0 && (
+              <>
+                <div className="form-searched-movie">
+                  {searchedMovieList.map((movie) => (
+                    <p key={movie.id} onClick={() => handleSelectMovie(movie)}>
+                      {movie.original_title}
+                    </p>
+                  ))}
+                </div>
+                <div className="form-pagination">
+                  <button disabled={page === 1} onClick={handlePreviousPage}>
+                    <b>Previous</b>
+                  </button>
+                  <span>
+                    <b>
+                      Page {page} of {totalPages}
+                    </b>
+                  </span>
+                  <button
+                    disabled={page === totalPages}
+                    onClick={handleNextPage}
+                  >
+                    <b>Next</b>
+                  </button>
+                </div>
+              </>
+            )}
           </div>
           <hr />
         </>

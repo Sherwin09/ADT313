@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './MovieGenre.css'
 
 const MovieGenres = ({ movieId }) => {
   const [genres, setGenres] = useState([]);
@@ -17,7 +18,7 @@ const MovieGenres = ({ movieId }) => {
       headers: {
         Accept: "application/json",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YTdiNmUyNGJkNWRkNjhiNmE1ZWFjZjgyNWY3NGY5ZCIsIm5iZiI6MTcyOTI5NzI5Ny4wNzMzNTEsInN1YiI6IjY2MzhlZGM0MmZhZjRkMDEzMGM2NzM3NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZIX4EF2yAKl6NwhcmhZucxSQi1rJDZiGG80tDd6_9XI",
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYzkwM2QxZmU2MmFlN2QyNjJiNmNjYTQ4M2Y5M2U3MiIsIm5iZiI6MTcyOTc1NzE5NC41NTcsInN1YiI6IjY3MWEwMDBhNWQwZGU4OTA0MmQ4ZGU5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FVVdB2MiqYiPT9zF-DgtzgujwBnAPijbptO9gF3ExSc",
       },
     })
       .then((response) => {
@@ -38,13 +39,15 @@ const MovieGenres = ({ movieId }) => {
     return <div>{error}</div>;
   }
 
-  // Join genres with commas, and use the `join()` method to handle commas
-  const genreList = genres.map((genre) => genre.name).join(", ");
 
   return (
-    <div>
-      <h3>Genres:</h3>
-      <p>{genreList}</p>
+    <div className="Genres">
+      <small>Genres:</small>
+      {genres.map((genre) => (
+        <div key={genre.id} className="genre-div">
+          {genre.name}
+        </div>
+      ))}
     </div>
   );
 };

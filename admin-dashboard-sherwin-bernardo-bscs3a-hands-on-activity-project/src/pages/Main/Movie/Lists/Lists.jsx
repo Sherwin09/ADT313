@@ -2,20 +2,35 @@ import { useNavigate } from "react-router-dom";
 import "./Lists.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 const Lists = () => {
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
-  const [lists, setLists] = useState([]);
+  const [lists, setLists] = useState([]); 
+  const [filteredLists, setFilteredLists] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); 
 
   const getMovies = () => {
-    //get the movies from the api or database
     axios.get("/movies").then((response) => {
       setLists(response.data);
+      setFilteredLists(response.data);
     });
   };
+
   useEffect(() => {
     getMovies();
   }, []);
+
+
+  const handleSearch = (event) => {
+    const value = event.target.value.toLowerCase();
+    setSearchTerm(value);
+
+    const filtered = lists.filter((movie) =>
+      movie.title.toLowerCase().includes(value)
+    );
+    setFilteredLists(filtered);
+  };
 
   const handleDelete = (id) => {
     const isConfirm = window.confirm(
@@ -29,22 +44,14 @@ const Lists = () => {
           },
         })
         .then(() => {
-          //update list by modifying the movie list array
-          const tempLists = [...lists];
-          const index = lists.findIndex((movie) => movie.id === id);
-          if (index !== undefined || index !== -1) {
-            tempLists.splice(index, 1);
-            setLists(tempLists);
-          }
-
-          //update list by requesting again to api
-          // getMovies();
+          const updatedLists = lists.filter((movie) => movie.id !== id);
+          setLists(updatedLists);
+          setFilteredLists(updatedLists);
         });
     }
   };
 
   return (
-    
     <div className="lists-container">
       <div className="list-create-container">
         <button
@@ -57,6 +64,15 @@ const Lists = () => {
           <b>Create new</b>
         </button>
       </div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search movies..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="search-input"
+        />
+      </div>
       <div className="list-table-container">
         <table className="list-movie-lists">
           <thead>
@@ -67,8 +83,8 @@ const Lists = () => {
             </tr>
           </thead>
           <tbody>
-            {lists.map((movie) => (
-              <tr>
+            {filteredLists.map((movie) => (
+              <tr key={movie.id}>
                 <td>{movie.id}</td>
                 <td>{movie.title}</td>
                 <td>
