@@ -4,6 +4,8 @@ import axios from "axios";
 import "./View.css";
 import MovieGenre from "../../../../components/MoviesGenres/MovieGenres";
 
+
+
 function View({ setSelectedMovie }) {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();

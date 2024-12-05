@@ -13,6 +13,7 @@ import MainClient from "./Clientpages/Main/MainClient";
 import Home from "./Clientpages/Main/Movie/Home/Home";
 import View from "./Clientpages/Main/Movie/View/View";
 import MovieContextProvider from "./context/MovieContext";
+import MovieVideo from "./components/MovieVideos/MovieVideo";
 
 const router = createBrowserRouter([
   {
@@ -82,7 +83,7 @@ const router = createBrowserRouter([
               {
                 path: "/main/movies/form/:movieId/videos",
                 element: (
-                  <h1>Change this for videos CRUD functionality component.</h1>
+                  <MovieVideo />
                 ),
               },
             ],

@@ -3,7 +3,6 @@ import './Movie.css'
 const Movie = () => {
   return (
     <>
-
       <Outlet />
     </>
   );
